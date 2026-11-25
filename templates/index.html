@@ -1,1 +1,696 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#A95075">
+
+    <title>PetCare | Happy Paws, Happy Hearts</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<!-- SVG PET ILLUSTRATIONS -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="0" height="0"
+     class="svg-library"
+     aria-hidden="true">
+
+    <defs>
+
+        <!-- Paw Print -->
+
+        <symbol id="paw" viewBox="0 0 100 100">
+            <ellipse cx="50" cy="66" rx="28" ry="24" fill="currentColor"/>
+            <ellipse cx="19" cy="36" rx="11" ry="16" transform="rotate(-25 19 36)" fill="currentColor"/>
+            <ellipse cx="40" cy="21" rx="11" ry="16" fill="currentColor"/>
+            <ellipse cx="64" cy="21" rx="11" ry="16" fill="currentColor"/>
+            <ellipse cx="84" cy="37" rx="11" ry="16" transform="rotate(25 84 37)" fill="currentColor"/>
+        </symbol>
+
+        <!-- Cute Puppy -->
+
+        <symbol id="puppy" viewBox="0 0 140 150">
+
+            <ellipse cx="70" cy="139" rx="48" ry="8" fill="#E7C5D2"/>
+
+            <path d="M105 111 Q137 90 126 77"
+                  stroke="#C58D66" stroke-width="12"
+                  fill="none" stroke-linecap="round"/>
+
+            <ellipse cx="70" cy="108" rx="34" ry="36" fill="#DFB08B"/>
+            <ellipse cx="70" cy="112" rx="20" ry="25" fill="#FFF0DC"/>
+
+            <ellipse cx="48" cy="134" rx="17" ry="10" fill="#EDC5A5"/>
+            <ellipse cx="92" cy="134" rx="17" ry="10" fill="#EDC5A5"/>
+
+            <ellipse cx="70" cy="58" rx="43" ry="39" fill="#EDC5A5"/>
+
+            <path d="M38 28 Q10 18 12 61 Q14 87 32 72 L45 40Z"
+                  fill="#B57B58"/>
+
+            <path d="M102 28 Q130 18 128 61 Q126 87 108 72 L95 40Z"
+                  fill="#B57B58"/>
+
+            <ellipse cx="53" cy="54" rx="5" ry="7" fill="#563B40"/>
+            <ellipse cx="87" cy="54" rx="5" ry="7" fill="#563B40"/>
+
+            <circle cx="54" cy="52" r="1.8" fill="white"/>
+            <circle cx="88" cy="52" r="1.8" fill="white"/>
+
+            <ellipse cx="44" cy="67" rx="9" ry="5" fill="#E9A4A6"/>
+            <ellipse cx="96" cy="67" rx="9" ry="5" fill="#E9A4A6"/>
+
+            <ellipse cx="70" cy="72" rx="23" ry="16" fill="#FFF1DE"/>
+
+            <path d="M62 65 Q70 60 78 65 Q78 73 70 74 Q62 73 62 65"
+                  fill="#563B40"/>
+
+            <path d="M70 74 Q62 83 57 75 M70 74 Q78 83 83 75"
+                  stroke="#563B40" stroke-width="2"
+                  fill="none" stroke-linecap="round"/>
+
+            <path d="M65 80 Q70 95 75 80" fill="#DC879B"/>
+
+            <path d="M43 92 Q70 103 97 92"
+                  stroke="#C96D92" stroke-width="8"
+                  fill="none" stroke-linecap="round"/>
+
+            <path d="M70 98 C60 89 53 105 70 115 C87 105 80 89 70 98"
+                  fill="#E9B65F"/>
+
+        </symbol>
+
+        <!-- Cute Kitten -->
+
+        <symbol id="kitty" viewBox="0 0 140 150">
+
+            <ellipse cx="70" cy="139" rx="44" ry="7" fill="#E7C5D2"/>
+
+            <path d="M100 124 Q138 119 123 91"
+                  stroke="#C9B5CF" stroke-width="13"
+                  fill="none" stroke-linecap="round"/>
+
+            <ellipse cx="70" cy="109" rx="31" ry="34" fill="#E2D3E8"/>
+            <ellipse cx="70" cy="115" rx="18" ry="22" fill="#FFF9F4"/>
+
+            <path d="M31 54 L27 15 Q29 9 35 15 L61 34 L80 34 L106 15 Q113 9 113 17 L109 56"
+                  fill="#E2D3E8"/>
+
+            <path d="M35 24 L38 46 L54 36Z M105 24 L102 46 L86 36Z"
+                  fill="#E7A7BF"/>
+
+            <ellipse cx="70" cy="63" rx="43" ry="35" fill="#E2D3E8"/>
+
+            <path d="M62 30 L65 45 M73 29 L73 43 M84 32 L80 45"
+                  stroke="#C2A9CC" stroke-width="4"
+                  stroke-linecap="round"/>
+
+            <ellipse cx="52" cy="60" rx="5" ry="7" fill="#604659"/>
+            <ellipse cx="88" cy="60" rx="5" ry="7" fill="#604659"/>
+
+            <circle cx="53" cy="58" r="1.8" fill="white"/>
+            <circle cx="89" cy="58" r="1.8" fill="white"/>
+
+            <ellipse cx="42" cy="72" rx="8" ry="5" fill="#E8A4BF"/>
+            <ellipse cx="98" cy="72" rx="8" ry="5" fill="#E8A4BF"/>
+
+            <path d="M64 69 Q70 65 76 69 L70 75Z" fill="#C87B99"/>
+
+            <path d="M70 75 Q62 83 58 76 M70 75 Q78 83 82 76"
+                  stroke="#604659" stroke-width="1.8"
+                  fill="none" stroke-linecap="round"/>
+
+            <path d="M35 72 L16 68 M35 77 L17 81 M105 72 L124 68 M105 77 L123 81"
+                  stroke="#9E819F" stroke-width="1.8"
+                  stroke-linecap="round"/>
+
+            <ellipse cx="49" cy="135" rx="16" ry="9" fill="#EEE3F1"/>
+            <ellipse cx="91" cy="135" rx="16" ry="9" fill="#EEE3F1"/>
+
+            <path d="M70 101 L51 92 L51 110Z M70 101 L89 92 L89 110Z"
+                  fill="#D47D9F"/>
+
+            <circle cx="70" cy="101" r="6" fill="#B65A80"/>
+
+        </symbol>
+
+        <!-- Appointment Calendar -->
+
+        <symbol id="calendar" viewBox="0 0 140 150">
+
+            <rect x="19" y="31" width="102" height="102"
+                  rx="17" fill="#FFFAF7"
+                  stroke="#D69EAF" stroke-width="3"/>
+
+            <path d="M19 50 Q19 31 36 31 H104 Q121 31 121 50 V58 H19Z"
+                  fill="#D99AB5"/>
+
+            <path d="M45 22 V41 M95 22 V41"
+                  stroke="#A95075" stroke-width="8"
+                  stroke-linecap="round"/>
+
+            <g fill="#F4DBE6">
+                <rect x="32" y="70" width="17" height="15" rx="4"/>
+                <rect x="60" y="70" width="17" height="15" rx="4"/>
+                <rect x="88" y="70" width="17" height="15" rx="4"/>
+                <rect x="32" y="96" width="17" height="15" rx="4"/>
+                <rect x="88" y="96" width="17" height="15" rx="4"/>
+            </g>
+
+            <path d="M68 99 C52 85 47 107 68 119 C89 107 84 85 68 99"
+                  fill="#C9799A"/>
+
+        </symbol>
+
+    </defs>
+
+</svg>
+
+
+<!-- SIDEBAR -->
+
+<aside id="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            <svg viewBox="0 0 100 100">
+                <use href="#paw"/>
+            </svg>
+        </div>
+
+        <div>
+            <h1>PetCare<span>♡</span></h1>
+            <small>Little paws. Lots of love.</small>
+        </div>
+
+    </div>
+
+    <p class="nav-label">YOUR WORKSPACE</p>
+
+    <nav aria-label="Main navigation">
+
+        <button type="button" data-page="dashboard" class="active">
+            <span class="nav-icon">⌂</span>
+            <span>Dashboard</span>
+            <span class="nav-arrow">›</span>
+        </button>
+
+        <button type="button" data-page="pets">
+            <span class="nav-icon">🐾</span>
+            <span>Pet Profiles</span>
+            <span class="nav-arrow">›</span>
+        </button>
+
+        <button type="button" data-page="owners">
+            <span class="nav-icon">♡</span>
+            <span>Pet Owners</span>
+            <span class="nav-arrow">›</span>
+        </button>
+
+        <button type="button" data-page="appointments">
+            <span class="nav-icon">▦</span>
+            <span>Appointments</span>
+            <span class="nav-arrow">›</span>
+        </button>
+
+    </nav>
+
+    <div class="sidebar-mascot">
+
+        <svg viewBox="0 0 140 150" class="mascot">
+            <use href="#kitty"/>
+        </svg>
+
+        <h3>You're pawsome!</h3>
+
+        <p>Every little paw deserves a little extra love.</p>
+
+        <div class="hearts">♡ ♡ ♡</div>
+
+    </div>
+
+    <div class="sidebar-footer">
+        PetCare Management System
+        <small>Made with love ♡</small>
+    </div>
+
+</aside>
+
+
+<!-- MAIN CONTENT -->
+
+<main id="mainContent">
+
+    <header class="topbar">
+
+        <div>
+
+            <small class="eyebrow">
+                YOUR PET CARE WORKSPACE
+            </small>
+
+            <h1 id="heading">Hello, pet lover! ♡</h1>
+
+            <p id="currentDate"></p>
+
+        </div>
+
+        <div class="header-actions">
+
+            <button type="button"
+                    id="refresh"
+                    class="refresh-btn"
+                    title="Refresh records"
+                    aria-label="Refresh records">
+                ↻
+            </button>
+
+            <div class="admin-avatar">
+                <svg viewBox="0 0 140 150">
+                    <use href="#kitty"/>
+                </svg>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- CONNECTION STATUS -->
+
+    <div class="connection" id="connection">
+        <span class="connection-dot"></span>
+        <span id="connectionText">Connecting to Firestore...</span>
+    </div>
+
+
+    <!-- DASHBOARD HERO -->
+
+    <section id="welcome" class="hero">
+
+        <div class="hero-content">
+
+            <span class="hero-tag">♡ WELCOME TO PETCARE</span>
+
+            <h2>
+                Happy paws,<br>
+                happy hearts.
+            </h2>
+
+            <p>
+                Give every furry friend the love, attention,
+                and care they deserve.
+            </p>
+
+            <button type="button"
+                    class="primary-btn"
+                    data-quick="appointments">
+                ♡ Schedule a Visit
+            </button>
+
+        </div>
+
+        <div class="hero-art">
+
+            <svg viewBox="0 0 280 200">
+
+                <circle cx="145" cy="105" r="90" fill="#FFFFFF66"/>
+
+                <g color="#D99AB5" opacity=".5">
+                    <use href="#paw" x="12" y="8" width="32" height="32"/>
+                    <use href="#paw" x="230" y="15" width="28" height="28"/>
+                </g>
+
+                <path d="M140 28 C120 8 100 38 140 59 C180 38 160 8 140 28"
+                      fill="#D98FAE"/>
+
+                <use href="#puppy" x="0" y="35" width="155" height="160"/>
+
+                <use href="#kitty" x="130" y="42" width="145" height="155"/>
+
+            </svg>
+
+        </div>
+
+    </section>
+
+
+    <!-- DASHBOARD STATISTICS -->
+
+    <section id="overview">
+
+        <div class="section-heading">
+            <h2>Care Overview</h2>
+            <span>♡ At a glance</span>
+        </div>
+
+        <div id="stats">
+
+            <div class="stat">
+                Loading dashboard...
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DASHBOARD QUICK ACTIONS -->
+
+    <section id="quickActions">
+
+        <div class="section-heading">
+            <h2>What would you like to do?</h2>
+        </div>
+
+        <div class="quick-grid">
+
+            <article class="quick-card pink-card">
+
+                <svg viewBox="0 0 140 150">
+                    <use href="#puppy"/>
+                </svg>
+
+                <h3>Pet Profiles</h3>
+
+                <p>Meet our adorable furry friends.</p>
+
+                <button type="button" data-quick="pets">
+                    + Add Pet
+                </button>
+
+            </article>
+
+            <article class="quick-card lavender-card">
+
+                <svg viewBox="0 0 140 150">
+                    <use href="#kitty"/>
+                </svg>
+
+                <h3>Pet Owners</h3>
+
+                <p>Meet our lovely pet parents.</p>
+
+                <button type="button" data-quick="owners">
+                    + Add Owner
+                </button>
+
+            </article>
+
+            <article class="quick-card peach-card">
+
+                <svg viewBox="0 0 140 150">
+                    <use href="#calendar"/>
+                </svg>
+
+                <h3>Appointments</h3>
+
+                <p>Make time for a little extra care.</p>
+
+                <button type="button" data-quick="appointments">
+                    + Schedule
+                </button>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- RECENT APPOINTMENTS -->
+
+    <section id="recentSection">
+
+        <div class="section-heading">
+
+            <h2>Recent Appointments</h2>
+
+            <button type="button"
+                    class="text-btn"
+                    data-go="appointments">
+                View All →
+            </button>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="tablewrap">
+
+                <table>
+
+                    <thead>
+                    <tr>
+                        <th>Pet Name</th>
+                        <th>Owner</th>
+                        <th>Service</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="recentRows"></tbody>
+
+                </table>
+
+            </div>
+
+            <p id="recentEmpty" class="empty-message" hidden>
+                🐾 No appointments yet.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MODULE BANNER -->
+
+    <section id="moduleBanner" class="module-banner" hidden>
+
+        <div>
+
+            <small class="eyebrow">♡ CARE MANAGEMENT</small>
+
+            <h2 id="moduleTitle">Pet Profiles</h2>
+
+            <p id="moduleDescription"></p>
+
+        </div>
+
+        <svg viewBox="0 0 140 150">
+            <use id="moduleArt" href="#puppy"/>
+        </svg>
+
+    </section>
+
+
+    <!-- RECORD MANAGEMENT -->
+
+    <section id="records" class="panel" hidden>
+
+        <div class="section-heading">
+
+            <h2 id="recordTitle">Manage Records</h2>
+
+            <span id="recordCount">0 records</span>
+
+        </div>
+
+        <div class="toolbar">
+
+            <div class="search-box">
+
+                <span>⌕</span>
+
+                <input type="search"
+                       id="search"
+                       placeholder="Search records..."
+                       autocomplete="off"
+                       aria-label="Search records">
+
+            </div>
+
+            <select id="statusFilter"
+                    aria-label="Filter appointment status"
+                    hidden>
+
+                <option value="">All Statuses</option>
+                <option value="Scheduled">Scheduled</option>
+                <option value="Completed">Completed</option>
+                <option value="Cancelled">Cancelled</option>
+
+            </select>
+
+            <button type="button" id="add" class="primary-btn">
+                + Add Record
+            </button>
+
+        </div>
+
+        <div class="tablewrap">
+
+            <table>
+
+                <thead id="head"></thead>
+
+                <tbody id="rows"></tbody>
+
+            </table>
+
+        </div>
+
+        <div id="empty" class="empty-state" hidden>
+
+            <svg viewBox="0 0 140 150">
+                <use href="#kitty"/>
+            </svg>
+
+            <h3>No records found!</h3>
+
+            <p id="emptyText">
+                Your adorable little records will appear here.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <footer class="main-footer">
+
+        <svg viewBox="0 0 100 100">
+            <use href="#paw"/>
+        </svg>
+
+        Made with ♡ for every little paw · PetCare
+
+    </footer>
+
+</main>
+
+
+<!-- ADD, EDIT AND VIEW MODAL -->
+
+<dialog id="modal">
+
+    <div class="modal-header">
+
+        <div>
+
+            <small class="eyebrow">♡ PETCARE RECORDS</small>
+
+            <h2 id="modalTitle">Manage Record</h2>
+
+        </div>
+
+        <svg viewBox="0 0 140 150">
+            <use href="#puppy"/>
+        </svg>
+
+    </div>
+
+    <form id="form">
+
+        <div id="fields"></div>
+
+        <p id="formError" class="form-error" role="alert" hidden></p>
+
+        <div class="modal-actions">
+
+            <button type="button" id="cancel" class="secondary-btn">
+                Cancel
+            </button>
+
+            <button type="submit" id="save" class="primary-btn">
+                ♡ Save Record
+            </button>
+
+        </div>
+
+    </form>
+
+</dialog>
+
+
+<!-- DELETE CONFIRMATION -->
+
+<dialog id="deleteModal">
+
+    <div class="delete-content">
+
+        <svg viewBox="0 0 140 150">
+            <use href="#kitty"/>
+        </svg>
+
+        <h2>Delete this record?</h2>
+
+        <p id="deleteMessage"></p>
+
+        <small>This action cannot be undone.</small>
+
+        <div class="modal-actions">
+
+            <button type="button"
+                    id="cancelDelete"
+                    class="secondary-btn">
+                Keep Record
+            </button>
+
+            <button type="button"
+                    id="confirmDelete"
+                    class="delete-btn">
+                Delete Record
+            </button>
+
+        </div>
+
+    </div>
+
+</dialog>
+
+
+<!-- TOAST NOTIFICATION -->
+
+<div id="notice" role="status" aria-live="polite" hidden>
+
+    <div id="noticeIcon">♡</div>
+
+    <div>
+
+        <strong id="noticeTitle">Success!</strong>
+
+        <p id="noticeText"></p>
+
+    </div>
+
+    <button type="button"
+            id="closeNotice"
+            aria-label="Close notification">
+        ×
+    </button>
+
+</div>
+
+
+<noscript>
+    Please enable JavaScript to use PetCare.
+</noscript>
+
+<script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+
+</body>
+</html>
