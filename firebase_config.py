@@ -1,4 +1,5 @@
 import os
+import json
 from pathlib import Path
 from threading import Lock
 
@@ -29,51 +30,79 @@ def get_db():
 
     with _lock:
 
-        # Reuse existing Firestore connection
         if _db is not None:
             return _db
 
         try:
 
-            # Check if Firebase is already initialized
             try:
                 firebase_app = firebase_admin.get_app()
 
             except ValueError:
 
-                credential_path = os.getenv(
-                    "GOOGLE_APPLICATION_CREDENTIALS"
+                # ==================================
+                # VERCEL FIREBASE CONFIGURATION
+                # ==================================
+
+                firebase_json = os.getenv(
+                    "FIREBASE_SERVICE_ACCOUNT"
                 )
 
-                if not credential_path:
-                    raise RuntimeError(
-                        "GOOGLE_APPLICATION_CREDENTIALS "
-                        "is missing in your .env file."
+                if firebase_json:
+
+                    service_account = json.loads(
+                        firebase_json
                     )
 
-                credential_path = Path(credential_path)
-
-                if not credential_path.is_absolute():
-                    credential_path = BASE_DIR / credential_path
-
-                if not credential_path.is_file():
-                    raise FileNotFoundError(
-                        f"Firebase JSON file not found: "
-                        f"{credential_path}"
+                    cred = credentials.Certificate(
+                        service_account
                     )
 
-                cred = credentials.Certificate(
-                    str(credential_path)
-                )
+                    print("[INFO] Using Vercel credentials.")
+
+                # ==================================
+                # LOCAL PYCHARM CONFIGURATION
+                # ==================================
+
+                else:
+
+                    credential_path = os.getenv(
+                        "GOOGLE_APPLICATION_CREDENTIALS",
+                        "ServiceAccountKey.json"
+                    )
+
+                    credential_path = Path(
+                        credential_path
+                    )
+
+                    if not credential_path.is_absolute():
+
+                        credential_path = (
+                            BASE_DIR / credential_path
+                        )
+
+                    if not credential_path.is_file():
+
+                        raise FileNotFoundError(
+                            f"Firebase JSON file not found: "
+                            f"{credential_path}"
+                        )
+
+                    cred = credentials.Certificate(
+                        str(credential_path)
+                    )
+
+                    print("[INFO] Using local credentials.")
 
                 firebase_app = firebase_admin.initialize_app(
                     cred
                 )
 
             # Connect to Firestore
+
             _db = firestore.client(app=firebase_app)
 
-            print("[SUCCESS] PawCare Firebase initialized.")
+            print("[SUCCESS] PetCare Firebase initialized.")
 
             return _db
 
@@ -103,6 +132,7 @@ if __name__ == "__main__":
         if collections:
 
             for collection in collections:
+
                 print(f" - {collection.id}")
 
         else:
