@@ -205,4 +205,110 @@ Configure the following variables:
 
 ### Step 5: Insert Sample Records
 
-Run the
+Run the following optional command to populate Firestore with fictional sample records:
+
+`python seed.py`
+
+### Step 6: Run the Application
+
+`python app.py`
+
+Open the local website:
+
+http://127.0.0.1:5000/
+
+## 10. Vercel Deployment Configuration
+
+The PetCare application is deployed through Vercel using its GitHub repository.
+
+### Environment Variables
+
+| Key | Value |
+|---|---|
+| FIREBASE_SERVICE_ACCOUNT | Complete Firebase service account JSON |
+| FLASK_DEBUG | false |
+
+The Firebase configuration supports both local PyCharm development and Vercel cloud deployment.
+
+### Deployment Procedure
+
+1. Upload the project source code to GitHub.
+2. Import the GitHub repository into Vercel.
+3. Configure the required environment variables.
+4. Deploy the Flask application.
+5. Verify the website and database connection.
+
+### Deployed Website
+
+**[Open PetCare Management System](https://petcare-five-gamma.vercel.app/)**
+
+## 11. System Testing
+
+The following functions should be tested to ensure proper system operation:
+
+- Firebase Firestore connectivity
+- Adding new pet owners
+- Registering new pets
+- Creating veterinary appointments
+- Retrieving existing records
+- Updating database records
+- Deleting database records
+- Searching and filtering records
+- Validating required fields
+- Validating email addresses
+- Preventing invalid pet and owner relationships
+- Preventing deletion of linked records
+- Website responsiveness
+- Vercel deployment functionality
+
+## 12. Security and Limitations
+
+- Firebase credentials are stored separately from the source code.
+- Private keys and local environment files must not be uploaded to GitHub.
+- Firestore security rules prevent unauthorized direct client access.
+- Firebase Admin SDK uses IAM permissions for database access.
+- The system is intended for academic and educational purposes.
+- The application does not include production-level user authentication.
+- Only fictional sample records should be used.
+- Access to the deployed application should be restricted to prevent unauthorized database modifications.
+
+## 13. Academic Submission
+
+**Subject:** Advanced Database
+
+**Activity:** Final Practical Activity
+
+**Project Title:** PetCare – Pet Care Management System
+
+**Database:** Firebase Cloud Firestore
+
+**Deployment:** Vercel
+
+**Submission Requirements:**
+
+- Private GitHub repository
+- Complete project source code
+- README documentation
+- Three interconnected Firestore collections
+- Complete CRUD functionality
+- Input validation
+- Search functionality
+- Invite `kidlat14` as a GitHub collaborator
+
+**Full Timeliness Credit:** December 6, 2026
+
+**Final Submission Deadline:** December 7, 2026
+
+## 14. Conclusion
+
+PetCare demonstrates the practical application of advanced database management concepts through Python Flask and Firebase Cloud Firestore. It provides an organized and interactive platform for managing pet profiles, owner information, and veterinary appointments.
+
+Through CRUD operations, database relationships, input validation, and Vercel cloud deployment, the system demonstrates how modern web technologies can be integrated to develop an accessible database-driven application.
+
+---
+
+**PetCare – Compassionate Care for Every Pet**
+
+**Powered by Python Flask, Firebase Firestore, and Vercel.**
+
+**Live Website:** https://petcare-five-gamma.vercel.app/
